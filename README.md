@@ -27,3 +27,22 @@ Das gesamte System kann mit einem einzigen Befehl auf einem frischen, Debian-bas
 
 **Installation:**
 setup.sh ausführen!
+
+
+
+
+
+
+
+
+##  Lizenz
+
+Der Quellcode dieses Projekts steht unter der **MIT-Lizenz**. Eine Kopie der Lizenz finden Sie in der `LICENSE`-Datei.
+
+Dieses Projekt nutzt die folgenden Open-Source-Bibliotheken, deren Lizenzen hiermit anerkannt werden:
+- **Flask** (BSD 3-Clause License)
+- **OpenCV** (Apache 2.0 License)
+- **NumPy** (BSD 3-Clause License)
+- **Pillow** (HPND License)
+- **pyngrok** (MIT License)
+- **qrcode.js** (MIT License)
