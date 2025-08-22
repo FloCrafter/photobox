@@ -2,9 +2,6 @@
 
 Dieses Projekt ist eine vollautomatische, Raspberry Pi-gesteuerte Photobox-Software, die per Tastendruck Fotos aufnimmt, diese in einem anpassbaren Layout anordnet und optional direkt ausdruckt oder per QR-Code zum Download anbietet.
 
-![Beispiel-Screenshot der Anwendung]
-<!-- Hier könntest du später einen Screenshot deiner fertigen Oberfläche einfügen -->
-
 ---
 
 ##  Features
