@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspi Photobox</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- NEU: Skript zur QR-Code-Erzeugung wird hinzugefügt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.js"></script>
+</head>
+<body>
+    <!-- NEU: Die öffentliche URL von ngrok wird hier gespeichert, damit JS darauf zugreifen kann -->
+    <div id="photobox-app" data-public-url="{{ public_url }}">
+       <div id="live-view-screen" class="screen active">
+            <video id="live-video" autoplay playsinline></video>
+            <div id="countdown-overlay" class="hidden"></div>
+            <div id="flash-overlay" class="hidden"></div>
+            <div id="capture-progress" class="hidden"></div>
+            <div class="instructions"></div>
+        </div>
+
+        <!-- MODIFIZIERT: Der Review-Bildschirm enthält jetzt den QR-Code-Container -->
+        <div id="review-screen" class="screen hidden">
+            <img id="review-image" src="" alt="Captured Photo">
+            
+            <div id="qr-code-container" class="hidden">
+                <h3>Foto teilen!</h3>
+                <div id="qrcode"></div>
+            </div>
+
+            <div id="review-instructions-overlay" class="instructions"></div>
+        </div>
+
+        <div id="settings-icon">⚙️</div>
+
+        <div id="settings-modal" class="hidden">
+            <div class="modal-content">
+                <span id="close-settings" class="close-button">×</span>
+                <h2 data-text-key="text_settings_title">Einstellungen</h2>
+                
+                <a href="/layout-editor" class="button-link" data-text-key="text_settings_layout_editor_btn">Layout Editor öffnen</a>
+                <a href="/text-editor" class="button-link" data-text-key="text_settings_text_editor_btn">Text-Editor öffnen</a>
+                
+                <hr class="divider">
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="triggerKey" data-text-key="text_settings_trigger_key_label">Auslöser-Taste:</label>
+                        <input type="text" id="triggerKey" name="triggerKey">
+                    </div>
+                    <div class="form-group">
+                        <label for="countdownTime" data-text-key="text_settings_countdown_label">Countdown (Sekunden):</label>
+                        <input type="number" id="countdownTime" name="countdownTime" min="1" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewTime">Review-Zeit (Sekunden):</label>
+                        <input type="number" id="reviewTime" name="reviewTime" min="5" max="120">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectedLayout" data-text-key="text_settings_layout_template_label">Layout-Vorlage:</label>
+                        <select id="selectedLayout" name="selectedLayout"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orientation" data-text-key="text_settings_orientation_label">Anzeige-Modus:</label>
+                        <select id="orientation" name="orientation">
+                            <option value="landscape">Querformat</option>
+                            <option value="portrait">Hochformat</option>
+                        </select>
+                    </div>
+                    <div id="portrait-options">
+                        <div class="form-group">
+                            <label for="instructionsPosition" data-text-key="text_settings_portrait_pos_label">Position der Anleitung (Hochformat):</label>
+                            <select id="instructionsPosition" name="instructionsPosition">
+                                <option value="right">Rechts</option>
+                                <option value="left">Links</option>
+                            </select>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="rotateInPortrait" name="rotateInPortrait">
+                            <label for="rotateInPortrait" data-text-key="text_settings_rotate_final_label">Finales Bild im Hochformat drehen</label>
+                        </div>
+                    </div>
+                     <hr class="divider">
+                    <div class="form-group">
+                        <label for="selectedCamera" data-text-key="text_settings_camera_label">Kamera:</label>
+                        <select id="selectedCamera" name="selectedCamera"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="printerName" data-text-key="text_settings_printer_label">Drucker:</label>
+                        <select id="printerName" name="printerName"></select>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="fullscreen" name="fullscreen">
+                        <label for="fullscreen" data-text-key="text_settings_fullscreen_label">Vollbildmodus</label>
+                    </div>
+                    <button type="submit" data-text-key="text_settings_save_btn">Speichern</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

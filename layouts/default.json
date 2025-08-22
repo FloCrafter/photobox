@@ -1,0 +1,39 @@
+{
+    "canvas": {
+        "width": 600,
+        "height": 900,
+        "background_color": "#ffffff"
+    },
+    "photo_slots": [
+        {
+            "x": 66,
+            "y": 21,
+            "type": "photo",
+            "width": 394,
+            "height": 269
+        }
+    ],
+    "static_elements": [
+        {
+            "x": 129,
+            "y": 404,
+            "type": "text",
+            "width": 200,
+            "height": 50,
+            "content": "dsda",
+            "font_size": 24,
+            "font_color": "#333333",
+            "anchor": "la"
+        },
+        {
+            "x": 88,
+            "y": 547,
+            "src": "/static/uploads/20250803205427_garden-flowers-png-0.png",
+            "type": "image",
+            "width": 150,
+            "height": 150,
+            "layer": "top"
+        }
+    ],
+    "name": "1213"
+}

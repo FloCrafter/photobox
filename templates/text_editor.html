@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-Editor - Raspi Photobox</title>
+    <!-- Wir verwenden das gleiche CSS wie für die Einstellungen -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/text_editor.css') }}">
+</head>
+<body>
+    <div class="editor-container">
+        <h1>Text-Editor</h1>
+        <p>Hier können Sie alle für den Benutzer sichtbaren Texte anpassen. Platzhalter wie <code>{key}</code> oder <code>{s}</code> werden automatisch ersetzt.</p>
+
+        <form id="text-editor-form">
+            <hr class="divider">
+            <h3>Haupt-Ansicht & Workflow</h3>
+            <div class="form-group">
+                <label for="text_start_instruction">Start-Anleitung</label>
+                <input type="text" id="text_start_instruction" name="text_start_instruction">
+                <small>Platzhalter: <code>{key}</code> (Auslöser-Taste)</small>
+            
+            </div>
+            <div class="form-group">
+                <label for="text_review_instruction">Anleitung (Druckvorschau)</label>
+                <input type="text" id="text_review_instruction" name="text_review_instruction">
+                <small>Platzhalter: <code>{key}</code> (Druck-Taste), <code>{s}</code> (Sekunden bis Abbruch)</small>
+            </div>
+             <div class="form-group">
+                <label for="text_capture_progress">Fortschrittsanzeige bei Serienaufnahme</label>
+                <input type="text" id="text_capture_progress" name="text_capture_progress">
+                <small>Platzhalter: <code>{x}</code> (aktuelles Bild), <code>{y}</code> (Bilder gesamt)</small>
+            </div>
+            <div class="form-group">
+                <label for="text_processing">Verarbeitungstext</label>
+                <input type="text" id="text_processing" name="text_processing">
+            </div>
+             <div class="form-group">
+                <label for="text_printing">Drucktext</label>
+                <input type="text" id="text_printing" name="text_printing">
+            </div>
+
+            <hr class="divider">
+            <h3>Einstellungs-Fenster</h3>
+            <div class="form-group">
+                <label for="text_settings_title">Titel</label>
+                <input type="text" id="text_settings_title" name="text_settings_title">
+            </div>
+             <div class="form-group">
+                <label for="text_settings_layout_editor_btn">Button "Layout Editor"</label>
+                <input type="text" id="text_settings_layout_editor_btn" name="text_settings_layout_editor_btn">
+            </div>
+            <div class="form-group">
+                <label for="text_settings_text_editor_btn">Button "Text-Editor"</label>
+                <input type="text" id="text_settings_text_editor_btn" name="text_settings_text_editor_btn">
+            </div>
+            <div class="form-group">
+                <label for="text_settings_trigger_key_label">Label "Auslöser-Taste"</label>
+                <input type="text" id="text_settings_trigger_key_label" name="text_settings_trigger_key_label">
+            </div>
+            <div class="form-group">
+                <label for="text_settings_countdown_label">Label "Countdown"</label>
+                <input type="text" id="text_settings_countdown_label" name="text_settings_countdown_label">
+            </div>
+            <div class="form-group">
+                <label for="text_settings_layout_template_label">Label "Layout-Vorlage"</label>
+                <input type="text" id="text_settings_layout_template_label" name="text_settings_layout_template_label">
+            </div>
+             <div class="form-group">
+                <label for="text_settings_orientation_label">Label "Anzeige-Modus"</label>
+                <input type="text" id="text_settings_orientation_label" name="text_settings_orientation_label">
+            </div>
+             <div class="form-group">
+                <label for="text_settings_portrait_pos_label">Label "Position der Anleitung"</label>
+                <input type="text" id="text_settings_portrait_pos_label" name="text_settings_portrait_pos_label">
+            </div>
+            <div class="form-group">
+                <label for="text_settings_rotate_final_label">Label "Finales Bild drehen"</label>
+                <input type="text" id="text_settings_rotate_final_label" name="text_settings_rotate_final_label">
+            </div>
+            <div class="form-group">
+                <label for="text_settings_camera_label">Label "Kamera"</label>
+                <input type="text" id="text_settings_camera_label" name="text_settings_camera_label">
+            </div>
+             <div class="form-group">
+                <label for="text_settings_printer_label">Label "Drucker"</label>
+                <input type="text" id="text_settings_printer_label" name="text_settings_printer_label">
+            </div>
+             <div class="form-group">
+                <label for="text_settings_fullscreen_label">Label "Vollbildmodus"</label>
+                <input type="text" id="text_settings_fullscreen_label" name="text_settings_fullscreen_label">
+            </div>
+            <div class="form-group">
+                <label for="text_settings_save_btn">Button "Speichern"</label>
+                <input type="text" id="text_settings_save_btn" name="text_settings_save_btn">
+            </div>
+
+            <div class="button-group">
+                 <a href="/" id="back-link" class="button-link">Zurück zur Fotobox</a>
+                 <button type="submit">Alle Texte speichern</button>
+            </div>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/text_editor.js') }}"></script>
+</body>
+</html>

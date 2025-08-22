@@ -1,0 +1,79 @@
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #2b2b2b;
+    --tertiary-color: #3c3c3c;
+    --accent-color: #00aaff;
+    --accent-color-hover: #0095dd;
+    --danger-color: #d9534f;
+    --danger-color-hover: #c9302c;
+    --text-color: #f0f0f0;
+    --font-family: 'Segoe UI', system-ui, sans-serif;
+    --border-color: #444;
+}
+
+body, html {
+    margin: 0; padding: 0; height: 100%; width: 100%;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    overflow: hidden;
+}
+
+body.is-dragging, body.is-dragging * { user-select: none; }
+#editor-container { display: flex; flex-direction: column; height: 100vh; }
+#toolbar {
+    background-color: var(--secondary-color); padding: 12px 25px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 20px;
+}
+#toolbar h2 { margin: 0; font-weight: 600; flex-shrink: 0; }
+#toolbar .controls { display: flex; align-items: center; margin-left: auto; gap: 10px; }
+#toolbar .controls button, #toolbar .controls .button-link {
+    padding: 8px 16px; font-size: 0.9em; border: 1px solid var(--border-color);
+    background-color: var(--tertiary-color); color: var(--text-color); border-radius: 5px; cursor: pointer;
+    transition: all 0.2s ease; text-decoration: none;
+}
+#toolbar .controls button:hover, #toolbar .controls .button-link:hover { background-color: var(--accent-color-hover); border-color: var(--accent-color-hover); color: white; }
+#toolbar .controls .primary-btn { background-color: var(--accent-color); border-color: var(--accent-color); color: white; }
+.controls-group { display: flex; align-items: center; gap: 8px; padding: 5px 10px; background-color: var(--primary-color); border-radius: 6px; }
+.controls-group label { font-weight: 600; font-size: 0.9em; color: #ccc; }
+.controls-group button { background-color: var(--tertiary-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 4px; padding: 4px 10px; cursor: pointer; font-weight: bold; }
+.controls-group button:hover { background-color: #4a4a4a; }
+#load-template-bar { background-color: var(--secondary-color); padding: 10px 25px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--border-color); }
+#load-template-bar label { font-weight: 600; }
+#load-template-bar select { flex-grow: 1; padding: 8px; background-color: var(--primary-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 5px; }
+#editor-main { display: flex; flex-grow: 1; overflow: hidden; }
+#canvas-container { flex-grow: 1; padding: 30px; background-color: #111; overflow: auto; display: flex; justify-content: center; align-items: center; }
+#canvas { position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background-color: white; flex-shrink: 0; transform-origin: center; transition: transform 0.2s ease; }
+.canvas-element { position: absolute; cursor: grab; border: 2px dashed transparent; box-sizing: border-box; transition: border-color 0.2s ease; }
+.canvas-element:hover { border-color: #f0ad4e; }
+.canvas-element.selected { border: 2px solid var(--accent-color); z-index: 10; }
+.photo-slot { background-color: #e0e0e0; display: flex; justify-content: center; align-items: center; color: #555; font-size: 1.2em; font-weight: bold; }
+/* NEU: Visuelle Unterscheidung der Slot-Typen */
+.photo-slot.portrait::after { content: "H"; }
+.photo-slot.landscape::after { content: "Q"; }
+.text-element { background-color: rgba(0, 170, 255, 0.1); padding: 5px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; white-space: nowrap; }
+.image-element { background-color: transparent; border-style: dashed !important; }
+.image-element img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.resize-handle { position: absolute; width: 10px; height: 10px; background-color: var(--accent-color); border: 1px solid white; border-radius: 50%; z-index: 11; }
+.resize-handle.br { bottom: -6px; right: -6px; cursor: nwse-resize; }
+.resize-handle.bl { bottom: -6px; left: -6px; cursor: nesw-resize; }
+.resize-handle.tr { top: -6px; right: -6px; cursor: nesw-resize; }
+.resize-handle.tl { top: -6px; left: -6px; cursor: nwse-resize; }
+#properties-panel { width: 320px; flex-shrink: 0; background-color: var(--secondary-color); padding: 25px; overflow-y: auto; border-left: 1px solid var(--border-color); }
+.property-group { border-bottom: 1px solid var(--border-color); transition: opacity 0.3s ease, max-height 0.4s ease, padding 0.3s ease, margin-bottom 0.3s ease; overflow: hidden; max-height: 0; opacity: 0; padding: 0 10px; margin-bottom: 0; }
+.property-group.active { max-height: 800px; opacity: 1; padding: 20px 0; margin-bottom: 25px; }
+#text-props, #image-props { border-bottom: none; }
+.property-group:last-child { border-bottom: none; }
+#properties-panel h3 { margin: 0 0 25px 0; font-size: 1.5em; font-weight: 600; text-align: center; }
+#properties-panel h4 { margin-top: 0; margin-bottom: 20px; color: var(--accent-color); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+#properties-panel label { display: block; margin-bottom: 15px; font-size: 0.9em; color: #ccc; }
+#properties-panel input, #properties-panel select { width: 100%; box-sizing: border-box; padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--tertiary-color); color: var(--text-color); margin-top: 5px; font-size: 1em; }
+#properties-panel input:focus, #properties-panel select:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.3); }
+#properties-panel input[type="color"] { padding: 2px; height: 40px; }
+.layout-presets { display: flex; gap: 10px; margin-top: 15px; }
+.layout-presets button { flex: 1; padding: 8px; font-size: 0.9em; background-color: var(--tertiary-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; }
+.layout-presets button:hover { background-color: #4a4a4a; }
+#delete-element-btn { width: 100%; padding: 10px; background-color: var(--danger-color); color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; transition: background-color 0.2s ease; }
+#delete-element-btn:hover { background-color: var(--danger-color-hover); }
+.hidden { display: none !important; }

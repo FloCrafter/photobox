@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout_editor.css') }}">
+</head>
+<body>
+    <div id="editor-container">
+        <div id="toolbar">
+            <h2>Layout Editor</h2>
+            
+            <div id="view-controls" class="controls-group">
+                <label>Ansicht:</label>
+                <button id="zoom-out-btn" title="Herauszoomen">-</button>
+                <button id="zoom-in-btn" title="Heranzoomen">+</button>
+                <button id="zoom-reset-btn" title="Originalgröße">100%</button>
+                <button id="fit-to-view-btn" title="An Ansicht anpassen">Anpassen</button>
+            </div>
+
+            <div class="controls">
+                <!-- NEU: Zwei getrennte Buttons für Foto-Slots -->
+                <button id="add-portrait-slot-btn">Hochformat-Slot +</button>
+                <button id="add-landscape-slot-btn">Querformat-Slot +</button>
+                <button id="add-text-btn">Text hinzufügen</button>
+                <button id="upload-image-btn">Sticker/Bild hochladen</button>
+                <input type="file" id="image-upload-input" class="hidden" accept="image/png, image/jpeg, image/gif">
+                <button id="save-layout-btn" class="primary-btn">Layout Speichern</button>
+                <a href="/" class="button-link">Zurück zur Fotobox</a>
+            </div>
+        </div>
+
+        <div id="load-template-bar">
+            <label for="existing-layouts">Vorlage laden/bearbeiten:</label>
+            <select id="existing-layouts">
+                <option value="">-- Neues leeres Layout --</option>
+            </select>
+        </div>
+
+        <div id="editor-main">
+            <div id="canvas-container">
+                <div id="canvas">
+                    <!-- Elemente werden hier von JS eingefügt -->
+                </div>
+            </div>
+
+            <div id="properties-panel">
+                <h3>Eigenschaften</h3>
+                <div id="canvas-properties" class="property-group">
+                    <h4>Leinwand</h4>
+                    <label>Breite (px): <input type="number" id="canvas-width"></label>
+                    <label>Höhe (px): <input type="number" id="canvas-height"></label>
+                    <label>Hintergrund: <input type="color" id="canvas-bgcolor"></label>
+                    <div class="layout-presets">
+                        <button id="set-portrait-btn">Hochformat (600x900)</button>
+                        <button id="set-landscape-btn">Querformat (900x600)</button>
+                    </div>
+                </div>
+                <div id="element-properties" class="property-group">
+                    <h4>Ausgewähltes Element</h4>
+                    <div id="common-props">
+                        <label>X-Position: <input type="number" id="el-x"></label>
+                        <label>Y-Position: <input type="number" id="el-y"></label>
+                        <label>Breite: <input type="number" id="el-width"></label>
+                        <label>Höhe: <input type="number" id="el-height"></label>
+                    </div>
+                    <div id="text-props" class="property-group">
+                        <label>Text: <input type="text" id="el-text-content"></label>
+                        <label>Schriftgröße: <input type="number" id="el-font-size"></label>
+                        <label>Farbe: <input type="color" id="el-font-color"></label>
+                    </div>
+                    <div id="image-props" class="property-group">
+                        <label>Ebene:
+                            <select id="el-image-layer">
+                                <option value="top">Über den Fotos</option>
+                                <option value="bottom">Unter den Fotos</option>
+                            </select>
+                        </label>
+                    </div>
+                    <button id="delete-element-btn">Element löschen</button>
+                </div>
+                <div id="no-element-selected" class="property-group">
+                    <p>Kein Element ausgewählt.</p>
+                    <p>Klicke auf ein Element auf der Leinwand, um es zu bearbeiten.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/layout_editor.js') }}"></script>
+</body>
+</html>
