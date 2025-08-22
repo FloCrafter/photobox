@@ -26,7 +26,6 @@ Das gesamte System kann mit einem einzigen Befehl auf einem frischen, Debian-bas
 **Voraussetzungen:**
 - Ein Raspberry Pi 4 (oder neuer) mit Raspberry Pi OS (Desktop-Version).
 - Eine angeschlossene Webcam.
-- Ein installierter und konfigurierter Drucker (über CUPS).
 - Eine aktive Internetverbindung für die Erstinstallation.
 
 **Installation:**
