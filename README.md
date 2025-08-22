@@ -29,7 +29,4 @@ Das gesamte System kann mit einem einzigen Befehl auf einem frischen, Debian-bas
 - Eine aktive Internetverbindung für die Erstinstallation.
 
 **Installation:**
-Öffnen Sie ein Terminal und führen Sie den folgenden Befehl aus:
-
-```bash
-curl -sSL https://swagnation.de/backup/phb/setup.sh | bash
+setup.sh ausführen!
